@@ -1,8 +1,20 @@
 package org.example;
 
+import org.example.controller.operators.WithdrawOperator;
+import org.example.model.persistence.DataInMemory;
+
 import java.util.Scanner;
 
+
+/**
+ * 1. New Deposit Operator - IAccountOperator
+ * 2. Validate balance before Withdraw operation in (View? Controller? Operator?)
+ * 3. Add Provider to get My Balance - IInfoProvider
+ * 4. Add Provider to get My Transactions - IInfoProvider
+ */
+
 public class Application {
+    private final DataInMemory dataInMemory = DataInMemory.getInstance();
     public static void main(String[] args) {
         Application app = new Application();
         app.run("Jerry", "BO10006789");
@@ -14,6 +26,7 @@ public class Application {
 
     private void run(String name, String account) {
         BankAccount bankAccount = new BankAccount(name, account);
+
 
         // Welcome to the BankApp
         print("Welcome " + name);
@@ -56,6 +69,9 @@ public class Application {
                         break;
                     case 'W':
                         withdraw(bankAccount);
+                        break;
+                    case 'D':
+
                         break;
                     default:
                         print(option + " is an invalid option");

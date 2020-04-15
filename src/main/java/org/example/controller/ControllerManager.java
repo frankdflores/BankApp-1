@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.controller.operators.DepositOperator;
 import org.example.controller.operators.WithdrawOperator;
 import org.example.controller.providers.AccountsByOwnerProvider;
 import org.example.model.persistence.DataSaverInMemory;
@@ -12,5 +13,9 @@ public class ControllerManager {
 
     public OwnerController getOwnerController() {
         return new OwnerController(new AccountsByOwnerProvider(new DataSaverInMemory()));
+    }
+
+    public BankAccountController getDepositController() {
+        return new BankAccountController(new DepositOperator(new DataSaverInMemory()));
     }
 }
